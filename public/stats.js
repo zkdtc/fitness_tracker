@@ -1,15 +1,32 @@
 // get all workout data from back-end
 
-fetch("/api/workouts/range")
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
+// fetch("/api/workouts/range")
+//   .then(response => {
+//     console.log('/api/workouts/range fetch data2222',response)
+//     return response.json();
+//   })
+//   .then(data => {
+//     console.log('/api/workouts/range data22222222',data)
+//     populateChart(data);
+//   });
+
+  async function getData(){
+    var data = await fetch('/api/workouts/range')
+    .then(function(response) {
+      console.log('level1');
+      return response.json()
+    })
+    .then(function(responseJson) {
+      console.log('level2');
+      return responseJson
+    })
     populateChart(data);
-  });
+}
 
+getData();
+ //data = API.getWorkoutsInRange()
 
-API.getWorkoutsInRange()
+ //populateChart(data);
 
   function generatePalette() {
     const arr = [

@@ -19,7 +19,7 @@ let shouldNavigateAway = false;
 
 async function initExercise() {
   let workout;
-
+  console.log('initExercise');
   if (location.search.split("=")[1] === undefined) {
     workout = await API.createWorkout()
     console.log(workout)
@@ -96,10 +96,11 @@ function validateInputs() {
 }
 
 async function handleFormSubmit(event) {
+  console.log('handleFormSubmit');
   event.preventDefault();
-
+  
   let workoutData = {};
-
+  console.log('workoutData',workoutData);
   if (workoutType === "cardio") {
     workoutData.type = "cardio";
     workoutData.name = cardioNameInput.value.trim();
@@ -113,7 +114,7 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
-
+  console.log('workoutData',workoutData);
   await API.addExercise(workoutData);
   clearInputs();
   toast.classList.add("success");
